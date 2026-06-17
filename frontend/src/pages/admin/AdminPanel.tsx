@@ -4,7 +4,7 @@ import { Users, Calendar, FileText, Settings, AlertTriangle } from 'lucide-react
 export const AdminPanel = () => {
   const stats = [
     { label: 'Total Users', value: '1,234', icon: Users, color: 'text-blue-600' },
-    { label: 'Today's Appointments', value: '45', icon: Calendar, color: 'text-green-600' },
+    { label: "Today's Appointments", value: '45', icon: Calendar, color: 'text-green-600' },
     { label: 'Medical Records', value: '892', icon: FileText, color: 'text-purple-600' },
     { label: 'System Alerts', value: '3', icon: AlertTriangle, color: 'text-red-600' },
   ];

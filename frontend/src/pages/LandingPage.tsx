@@ -77,7 +77,7 @@ export const LandingPage = () => {
                 ንጥረ ነገር ጥርስ ክሊኒክ
                 <br />
                 <span className="text-blue-600 dark:text-blue-400">Your Smile, Our Priority</span>
-              </h1>
+              </motion.h1>
               <motion.p 
                 className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
@@ -85,7 +85,7 @@ export const LandingPage = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 AI‑powered dental care in Ethiopia
-              </p>
+              </motion.p>
               <motion.div 
                 className="flex justify-center space-x-4"
                 initial={{ opacity: 0, y: 20 }}
