@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export const LandingPage = () => {
   const { theme, toggleTheme } = useTheme();
