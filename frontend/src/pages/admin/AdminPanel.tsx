@@ -1,12 +1,7 @@
-import { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { Button } from '../ui/Button';
-import { Card } from '../ui/Card';
-import { Users, Calendar, FileText, Settings, TrendingUp, AlertTriangle } from 'lucide-react';
+import { Card } from '../../components/ui/Card';
+import { Users, Calendar, FileText, Settings, AlertTriangle } from 'lucide-react';
 
 export const AdminPanel = () => {
-  const { user } = useAuth();
-
   const stats = [
     { label: 'Total Users', value: '1,234', icon: Users, color: 'text-blue-600' },
     { label: 'Today's Appointments', value: '45', icon: Calendar, color: 'text-green-600' },

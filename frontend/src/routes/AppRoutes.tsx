@@ -6,7 +6,11 @@ import { RegisterPage } from '../pages/auth/RegisterPage';
 import { PatientDashboard } from '../pages/patient/PatientDashboard';
 import { DoctorDashboard } from '../pages/doctor/DoctorDashboard';
 import { AdminPanel } from '../pages/admin/AdminPanel';
+import { AIChatPage } from '../pages/ai/AIChatPage';
+import { MedicalRecordsPage } from '../pages/records/MedicalRecordsPage';
+import { ProfilePage } from '../pages/profile/ProfilePage';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
+import { ProtectedRoute, DoctorRoute, AdminRoute } from '../components/RouteGuards';
 
 export const AppRoutes = () => {
   const { user, loading } = useAuth();
@@ -28,23 +32,11 @@ export const AppRoutes = () => {
       <Route path="/dashboard" element={<ProtectedRoute><PatientDashboard /></ProtectedRoute>} />
       <Route path="/doctor" element={<DoctorRoute><DoctorDashboard /></DoctorRoute>} />
       <Route path="/admin" element={<AdminRoute><AdminPanel /></AdminRoute>} />
+      <Route path="/ai-chat" element={<ProtectedRoute><AIChatPage /></ProtectedRoute>} />
+      <Route path="/medical-records" element={<ProtectedRoute><MedicalRecordsPage /></ProtectedRoute>} />
+      <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
       
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
-};
-
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useAuth();
-  return user ? <>{children}</> : <Navigate to="/login" />;
-};
-
-const DoctorRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useAuth();
-  return user?.user_metadata?.role === 'doctor' ? <>{children}</> : <Navigate to="/dashboard" />;
-};
-
-const AdminRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useAuth();
-  return user?.user_metadata?.role === 'admin' ? <>{children}</> : <Navigate to="/dashboard" />;
 };

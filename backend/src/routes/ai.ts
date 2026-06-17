@@ -1,49 +1,46 @@
 import express, { Request, Response } from 'express';
-import { supabase } from '../services/supabaseService';
+import { aiController } from '../controllers/aiController';
 import { authenticateToken } from '../middleware/auth';
 
 const router = express.Router();
 
 router.post('/', authenticateToken, async (req: Request, res: Response) => {
   try {
-    const { patientId, sessionId, sender, message } = req.body;
-
-    if (!patientId || !message) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
-
-    const { data, error } = await supabase
-      .from('ai_chat_messages')
-      .insert({
-        session_id: sessionId,
-        sender,
-        message
-      })
-      .select()
-      .single();
-
-    if (error) {
-      return res.status(500).json({ error: error.message });
-    }
-
-    if (sender === 'patient') {
-      const { data: session, error: sessionError } = await supabase
-        .from('ai_chat_sessions')
-        .upsert({
-          id: sessionId,
-          patient_id: patientId,
-          language: 'en'
-        })
-        .select()
-        .single();
-
-      if (sessionError) {
-        console.error('Error updating session:', sessionError);
-      }
-    }
-
-    res.json(data);
+    const result = await aiController.chatWithPatient(
+      req.body.patientId,
+      req.body.sessionId,
+      req.body.sender,
+      req.body.message
+    );
+    res.json(result);
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Missing required fields')) {
+      return res.status(400).json({ error: error.message });
+    }
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.post('/symptom-check', authenticateToken, async (req: Request, res: Response) => {
+  try {
+    const result = await aiController.symptomChecker(req.body.patientId, req.body.symptoms);
+    res.json(result);
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('Missing required fields or invalid symptoms format')) {
+      return res.status(400).json({ error: error.message });
+    }
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.post('/treatment-plan', authenticateToken, async (req: Request, res: Response) => {
+  try {
+    const result = await aiController.generateTreatmentPlan(req.body.patientId, req.body.diagnosis);
+    res.json(result);
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('Missing required fields')) {
+      return res.status(400).json({ error: error.message });
+    }
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -57,17 +54,8 @@ router.get('/sessions/:patientId', authenticateToken, async (req: Request, res: 
       return res.status(403).json({ error: 'Unauthorized' });
     }
 
-    const { data, error } = await supabase
-      .from('ai_chat_sessions')
-      .select('*')
-      .eq('patient_id', patientId)
-      .order('started_at', { ascending: false });
-
-    if (error) {
-      return res.status(500).json({ error: error.message });
-    }
-
-    res.json(data);
+    const result = await aiController.getChatSessions(patientId);
+    res.json(result);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -92,18 +80,15 @@ router.get('/messages/:sessionId', authenticateToken, async (req: Request, res: 
       return res.status(403).json({ error: 'Unauthorized' });
     }
 
-    const { data, error } = await supabase
-      .from('ai_chat_messages')
-      .select('*')
-      .eq('session_id', sessionId)
-      .order('created_at', { ascending: true });
-
-    if (error) {
-      return res.status(500).json({ error: error.message });
-    }
-
-    res.json(data);
+    const result = await aiController.getChatMessages(sessionId);
+    res.json(result);
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Session not found')) {
+      return res.status(404).json({ error: error.message });
+    }
+    if (error instanceof Error && error.message.includes('Unauthorized')) {
+      return res.status(403).json({ error: error.message });
+    }
     res.status(500).json({ error: 'Internal server error' });
   }
 });

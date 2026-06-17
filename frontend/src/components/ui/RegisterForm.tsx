@@ -2,6 +2,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from './Button';
 import { Input } from './Input';
 import { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import toast from 'react-hot-toast';
 
 interface RegisterFormProps {
   onSuccess?: () => void;
@@ -17,28 +19,18 @@ export const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
     role: 'patient'
   });
   const [isLoading, setIsLoading] = useState(false);
+  const { signUp } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Registration failed');
-      }
-
-      const data = await response.json();
-      localStorage.setItem('token', data.token);
+      await signUp(formData.email, formData.password, formData.fullName);
+      toast.success('Registration successful! Please check your email to confirm.');
       onSuccess?.();
     } catch (error) {
-      console.error('Registration error:', error);
+      toast.error(error instanceof Error ? error.message : 'Registration failed');
     } finally {
       setIsLoading(false);
     }

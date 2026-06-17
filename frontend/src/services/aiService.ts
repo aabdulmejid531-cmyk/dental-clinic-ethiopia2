@@ -1,8 +1,8 @@
-import { supabase } from './supabaseClient';
+const API_BASE = import.meta.env.VITE_API_URL || '';
 
 export const aiService = {
   async chatWithPatient(message: string, language: string, patientId?: string) {
-    const response = await fetch('/api/ai/chat', {
+    const response = await fetch(`${API_BASE}/api/ai/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message, language, patientId }),
@@ -17,7 +17,7 @@ export const aiService = {
   },
 
   async symptomChecker(symptoms: string[]) {
-    const response = await fetch('/api/ai/symptom-check', {
+    const response = await fetch(`${API_BASE}/api/ai/symptom-check`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ symptoms }),
@@ -32,7 +32,7 @@ export const aiService = {
   },
 
   async treatmentPlan(diagnosis: string) {
-    const response = await fetch('/api/ai/treatment-plan', {
+    const response = await fetch(`${API_BASE}/api/ai/treatment-plan`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ diagnosis }),

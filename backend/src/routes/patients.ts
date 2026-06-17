@@ -1,24 +1,13 @@
 import express, { Request, Response } from 'express';
-import { supabase } from '../services/supabaseService';
+import { patientsController } from '../controllers/patientsController';
 import { authenticateToken } from '../middleware/auth';
 
 const router = express.Router();
 
 router.get('/', authenticateToken, async (req: Request, res: Response) => {
   try {
-    const { userId } = req.user;
-
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('id, full_name, phone, role')
-      .eq('id', userId)
-      .single();
-
-    if (error) {
-      return res.status(404).json({ error: 'Patient not found' });
-    }
-
-    res.json(data);
+    const result = await patientsController.getPatientProfile(req.user.userId);
+    res.json(result);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -33,26 +22,12 @@ router.patch('/:id', authenticateToken, async (req: Request, res: Response) => {
       return res.status(403).json({ error: 'Unauthorized' });
     }
 
-    const { full_name, phone, address, emergency_contact } = req.body;
-
-    const { data, error } = await supabase
-      .from('profiles')
-      .update({
-        full_name,
-        phone,
-        address,
-        emergency_contact
-      })
-      .eq('id', id)
-      .select()
-      .single();
-
-    if (error) {
-      return res.status(500).json({ error: error.message });
-    }
-
-    res.json(data);
+    const result = await patientsController.updatePatientProfile(userId, req.body);
+    res.json(result);
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Unauthorized')) {
+      return res.status(403).json({ error: error.message });
+    }
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -66,21 +41,12 @@ router.get('/:id/medical-records', authenticateToken, async (req: Request, res: 
       return res.status(403).json({ error: 'Unauthorized' });
     }
 
-    const { data, error } = await supabase
-      .from('medical_records')
-      .select(`
-        *,
-        doctor:profiles!doctor_id(full_name)
-      `)
-      .eq('patient_id', id)
-      .order('visit_date', { ascending: false });
-
-    if (error) {
-      return res.status(500).json({ error: error.message });
-    }
-
-    res.json(data);
+    const result = await patientsController.getMedicalRecords(id);
+    res.json(result);
   } catch (error) {
+    if (error instanceof Error && error.message.includes('Unauthorized')) {
+      return res.status(403).json({ error: error.message });
+    }
     res.status(500).json({ error: 'Internal server error' });
   }
 });

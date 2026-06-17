@@ -1,10 +1,13 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from './supabaseClient';
+import { supabase } from '../services/supabaseClient';
 import { useAuth } from '../contexts/AuthContext';
 import toast from 'react-hot-toast';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 export const useAppointments = () => {
   const { user } = useAuth();
+  const queryClient = useQueryClient();
 
   const { data: appointments, isLoading, error } = useQuery({
     queryKey: ['appointments', user?.id],
@@ -51,6 +54,7 @@ export const useAppointments = () => {
     isLoading,
     error,
     bookAppointment,
+    refetch: () => queryClient.invalidateQueries(['appointments', user?.id]),
   };
 };
 
@@ -59,7 +63,7 @@ export const useAI = () => {
 
   const chatMutation = useMutation({
     mutationFn: async ({ message, language }: { message: string; language: string }) => {
-      const response = await fetch('/api/ai/chat', {
+      const response = await fetch(`${API_BASE}/api/ai/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, language, patientId: user?.id }),
@@ -79,7 +83,7 @@ export const useAI = () => {
 
   const symptomChecker = useMutation({
     mutationFn: async (symptoms: string[]) => {
-      const response = await fetch('/api/ai/symptom-check', {
+      const response = await fetch(`${API_BASE}/api/ai/symptom-check`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ symptoms }),
@@ -99,7 +103,7 @@ export const useAI = () => {
 
   const treatmentPlan = useMutation({
     mutationFn: async (diagnosis: string) => {
-      const response = await fetch('/api/ai/treatment-plan', {
+      const response = await fetch(`${API_BASE}/api/ai/treatment-plan`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ diagnosis }),

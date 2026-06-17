@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { useAppointments } from '../hooks/useAppointments';
-import { Button } from '../ui/Button';
-import { Card } from '../ui/Card';
-import { Calendar, Clock, Users, FileText, CheckCircle, XCircle } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
+import { useAppointments } from '../../hooks/useAppointments';
+import { Button } from '../../components/ui/Button';
+import { Card } from '../../components/ui/Card';
+import { Calendar, Clock, Users, FileText } from 'lucide-react';
 
 export const DoctorDashboard = () => {
   const { user } = useAuth();
-  const { data: appointments, isLoading } = useAppointments();
+  const { appointments, isLoading } = useAppointments();
 
   if (isLoading) {
     return (

@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { cn } from '../utils/cn';
+import { cn } from '../../utils/cn';
 
 const Input = forwardRef<HTMLInputElement, { className?: string; type?: string; placeholder?: string; value?: string; onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; required?: boolean }>(({
   className,

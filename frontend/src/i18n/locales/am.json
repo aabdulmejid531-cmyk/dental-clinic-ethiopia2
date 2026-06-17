@@ -1,0 +1,87 @@
+{
+  "app": {
+    "name": "የጥርስ ክሊኒክ ኢትዮጵያ",
+    "tagline": "ፈገግታዎ ቅድሚያችን ነው",
+    "description": "AI የተጎለበተ የጥርስ ህክምና በኢትዮጵያ"
+  },
+  "nav": {
+    "login": "ግባ",
+    "register": "ተመዝገብ",
+    "logout": "ውጣ",
+    "dashboard": "ዳሽቦርድ",
+    "appointments": "ቀጠሮዎች",
+    "aiChat": "AI ውይይት",
+    "medicalRecords": "የህክምና መዝገቦች",
+    "profile": "መገለጫ"
+  },
+  "landing": {
+    "heroTitle": "ንጥረ ነገር ጥርስ ክሊኒክ",
+    "bookAppointment": "ቀጠሮ ይያዙ",
+    "aiConsultation": "AI ምክክር",
+    "ourServices": "አገልግሎቶቻችን",
+    "generalDentistry": "አጠቃላይ የጥርስ ህክምና",
+    "generalDentistryDesc": "ጽዳት፣ መሙላት፣ ማውጣት እና የመከላከያ እንክብካቤ",
+    "orthodontics": "ኦርቶዶንቲክስ",
+    "orthodonticsDesc": "ብሬስ፣ አላይነር እና ንክሻ ማስተካከያ",
+    "emergencyCare": "ድንገተኛ እንክብካቤ",
+    "emergencyCareDesc": "የ24/7 AI እና የድንገተኛ አገልግሎቶች"
+  },
+  "auth": {
+    "welcomeBack": "እንደገና እንኳን ደህና መጡ",
+    "signInPrompt": "ወደ የጥርስ ክሊኒክ መለያዎ ይግቡ",
+    "createAccount": "መለያ ይፍጠሩ",
+    "joinPrompt": "ዛሬውኑ የጥርስ ክሊኒካችንን ይቀላቀሉ",
+    "email": "ኢሜይል",
+    "password": "የይለፍ ቃል",
+    "fullName": "ሙሉ ስም",
+    "phone": "ስልክ",
+    "login": "ግባ",
+    "register": "ተመዝገብ",
+    "loggingIn": "በመግባት ላይ...",
+    "registering": "በመመዝገብ ላይ...",
+    "noAccount": "መለያ የለዎትም? ይመዝገቡ",
+    "hasAccount": "መለያ አለዎት? ይግቡ"
+  },
+  "dashboard": {
+    "welcomePatient": "እንኳን ደህና መጡ",
+    "patientSubtitle": "ቀጠሮዎችዎን እና የጥርስ ጤናዎን ያስተዳድሩ",
+    "welcomeDoctor": "እንኳን ደህና መጡ ዶ/ር",
+    "doctorSubtitle": "ህመምተኞችዎን እና ቀጠሮዎችዎን ያስተዳድሩ",
+    "upcomingAppointments": "መጪ ቀጠሮዎች",
+    "nextAppointment": "ቀጣይ ቀጠሮ",
+    "doctor": "ሐኪም",
+    "medicalRecords": "የህክምና መዝገቦች",
+    "noAppointments": "ምንም መጪ ቀጠሮ የለም",
+    "quickActions": "ፈጣን ድርጊቶች",
+    "bookAppointment": "ቀጠሮ ይያዙ",
+    "viewMedicalHistory": "የህክምና ታሪክ ይመልከቱ",
+    "viewMedicalHistoryDesc": "የተሟላ የጥርስ መዝገብዎን ያግኙ",
+    "aiSymptomChecker": "AI ምልክት መፈተሻ",
+    "aiSymptomCheckerDesc": "ምልክቶችዎን በAI እርዳታ ይፈትሹ",
+    "messageDoctor": "ለሐኪም መልእክት ይላኩ",
+    "messageDoctorDesc": "ለጥርስ ሐኪምዎ መልእክት ይላኩ"
+  },
+  "appointments": {
+    "title": "ቀጠሮዎች",
+    "subtitle": "ቀጠሮዎችዎን ያስተዳድሩ እና አዲስ ይያዙ",
+    "bookNew": "አዲስ ቀጠሮ ይያዙ",
+    "reason": "ምክንያት",
+    "notes": "ማስታወሻ",
+    "optional": "አማራጭ",
+    "cancel": "ይቅር",
+    "book": "ቀጠሮ ይያዙ",
+    "noAppointments": "ምንም የታቀዱ ቀጠሮዎች የሉም",
+    "total": "ጠቅላላ ቀጠሮዎች",
+    "upcoming": "መጪ",
+    "completed": "ተፈጽሟል",
+    "selectDoctor": "ሐኪም ይምረጡ",
+    "dateTime": "ቀን እና ሰዓት"
+  },
+  "common": {
+    "loading": "በመጫን ላይ...",
+    "error": "ስህተት",
+    "success": "ተሳክቷል",
+    "save": "ለውጦችን አስቀምጥ",
+    "saving": "በማስቀመጥ ላይ..."
+  }
+}

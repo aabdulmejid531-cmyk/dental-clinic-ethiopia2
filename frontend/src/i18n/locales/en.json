@@ -1,0 +1,87 @@
+{
+  "app": {
+    "name": "Dental Clinic Ethiopia",
+    "tagline": "Your Smile, Our Priority",
+    "description": "AI-powered dental care in Ethiopia"
+  },
+  "nav": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "appointments": "Appointments",
+    "aiChat": "AI Chat",
+    "medicalRecords": "Medical Records",
+    "profile": "Profile"
+  },
+  "landing": {
+    "heroTitle": "NeTesfa Dental Clinic",
+    "bookAppointment": "Book Appointment",
+    "aiConsultation": "AI Consultation",
+    "ourServices": "Our Services",
+    "generalDentistry": "General Dentistry",
+    "generalDentistryDesc": "Cleanings, fillings, extractions, and preventive care",
+    "orthodontics": "Orthodontics",
+    "orthodonticsDesc": "Braces, aligners, and bite correction",
+    "emergencyCare": "Emergency Care",
+    "emergencyCareDesc": "24/7 AI and emergency services"
+  },
+  "auth": {
+    "welcomeBack": "Welcome Back",
+    "signInPrompt": "Sign in to your dental clinic account",
+    "createAccount": "Create Account",
+    "joinPrompt": "Join our dental clinic today",
+    "email": "Email",
+    "password": "Password",
+    "fullName": "Full Name",
+    "phone": "Phone",
+    "login": "Login",
+    "register": "Register",
+    "loggingIn": "Logging in...",
+    "registering": "Registering...",
+    "noAccount": "Don't have an account? Register",
+    "hasAccount": "Already have an account? Login"
+  },
+  "dashboard": {
+    "welcomePatient": "Welcome",
+    "patientSubtitle": "Manage your appointments and dental health",
+    "welcomeDoctor": "Welcome, Dr.",
+    "doctorSubtitle": "Manage your patients and appointments",
+    "upcomingAppointments": "Upcoming Appointments",
+    "nextAppointment": "Next Appointment",
+    "doctor": "Doctor",
+    "medicalRecords": "Medical Records",
+    "noAppointments": "No upcoming appointments",
+    "quickActions": "Quick Actions",
+    "bookAppointment": "Book Appointment",
+    "viewMedicalHistory": "View Medical History",
+    "viewMedicalHistoryDesc": "Access your complete dental records",
+    "aiSymptomChecker": "AI Symptom Checker",
+    "aiSymptomCheckerDesc": "Check your symptoms with AI assistance",
+    "messageDoctor": "Message Doctor",
+    "messageDoctorDesc": "Send a message to your dentist"
+  },
+  "appointments": {
+    "title": "Appointments",
+    "subtitle": "Manage your appointments and schedule new ones",
+    "bookNew": "Book New Appointment",
+    "reason": "Reason",
+    "notes": "Notes",
+    "optional": "Optional",
+    "cancel": "Cancel",
+    "book": "Book Appointment",
+    "noAppointments": "No appointments scheduled",
+    "total": "Total Appointments",
+    "upcoming": "Upcoming",
+    "completed": "Completed",
+    "selectDoctor": "Select a doctor",
+    "dateTime": "Date and Time"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save Changes",
+    "saving": "Saving..."
+  }
+}

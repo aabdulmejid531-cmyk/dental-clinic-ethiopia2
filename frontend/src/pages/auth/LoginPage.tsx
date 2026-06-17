@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LoginForm } from '../ui/LoginForm';
-import { RegisterForm } from '../ui/RegisterForm';
+import { LoginForm } from '../../components/ui/LoginForm';
+import { RegisterForm } from '../../components/ui/RegisterForm';
 
 export const LoginPage = () => {
   const navigate = useNavigate();

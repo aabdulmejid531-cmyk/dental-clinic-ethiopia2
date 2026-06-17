@@ -1,9 +1,10 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import winston from 'winston';
 import dotenv from 'dotenv';
+import { errorHandler } from './middleware/errorHandler';
 import authRoutes from './routes/auth';
 import appointmentRoutes from './routes/appointments';
 import aiRoutes from './routes/ai';
@@ -50,10 +51,7 @@ app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  logger.error(err.stack);
-  res.status(500).json({ error: 'Internal Server Error' });
-});
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
