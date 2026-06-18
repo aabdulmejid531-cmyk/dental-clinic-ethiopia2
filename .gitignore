@@ -12,3 +12,4 @@ combined.log
 coverage/
 .vscode/
 .idea/
+package-lock.json
