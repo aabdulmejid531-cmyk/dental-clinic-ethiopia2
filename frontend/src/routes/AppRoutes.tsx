@@ -1,6 +1,9 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { Layout } from '../components/layout/Layout';
 import { LandingPage } from '../pages/LandingPage';
+import { AboutPage } from '../pages/about/AboutPage';
+import { ContactPage } from '../pages/contact/ContactPage';
 import { LoginPage } from '../pages/auth/LoginPage';
 import { RegisterPage } from '../pages/auth/RegisterPage';
 import { PatientDashboard } from '../pages/patient/PatientDashboard';
@@ -25,18 +28,20 @@ export const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/dashboard" />} />
-      <Route path="/register" element={!user ? <RegisterPage /> : <Navigate to="/dashboard" />} />
+      <Route path="/" element={<Layout><LandingPage /></Layout>} />
+      <Route path="/about" element={<Layout><AboutPage /></Layout>} />
+      <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
+      <Route path="/login" element={<Layout>{!user ? <LoginPage /> : <Navigate to="/dashboard" />}</Layout>} />
+      <Route path="/register" element={<Layout>{!user ? <RegisterPage /> : <Navigate to="/dashboard" />}</Layout>} />
       
-      <Route path="/dashboard" element={<ProtectedRoute><PatientDashboard /></ProtectedRoute>} />
-      <Route path="/doctor" element={<DoctorRoute><DoctorDashboard /></DoctorRoute>} />
-      <Route path="/admin" element={<AdminRoute><AdminPanel /></AdminRoute>} />
-      <Route path="/ai-chat" element={<ProtectedRoute><AIChatPage /></ProtectedRoute>} />
-      <Route path="/medical-records" element={<ProtectedRoute><MedicalRecordsPage /></ProtectedRoute>} />
-      <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+      <Route path="/dashboard" element={<Layout><ProtectedRoute><PatientDashboard /></ProtectedRoute></Layout>} />
+      <Route path="/doctor" element={<Layout><DoctorRoute><DoctorDashboard /></DoctorRoute></Layout>} />
+      <Route path="/admin" element={<Layout><AdminRoute><AdminPanel /></AdminRoute></Layout>} />
+      <Route path="/ai-chat" element={<Layout><ProtectedRoute><AIChatPage /></ProtectedRoute></Layout>} />
+      <Route path="/medical-records" element={<Layout><ProtectedRoute><MedicalRecordsPage /></ProtectedRoute></Layout>} />
+      <Route path="/profile" element={<Layout><ProtectedRoute><ProfilePage /></ProtectedRoute></Layout>} />
       
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Layout><Navigate to="/" /></Layout>} />
     </Routes>
   );
 };
