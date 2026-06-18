@@ -26,7 +26,7 @@ export const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
     setIsLoading(true);
 
     try {
-      await signUp(formData.email, formData.password, formData.fullName);
+      await signUp(formData.email, formData.password, formData.fullName, formData.role);
       toast.success('Registration successful! Please check your email to confirm.');
       onSuccess?.();
     } catch (error) {
@@ -76,6 +76,19 @@ export const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
               onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
               placeholder="+251 912345678"
             />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="role" className="text-sm font-medium">Role</label>
+            <select
+              id="role"
+              value={formData.role}
+              onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value }))}
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+            >
+              <option value="patient">Patient</option>
+              <option value="doctor">Doctor</option>
+              <option value="admin">Admin</option>
+            </select>
           </div>
           <div className="space-y-2">
             <label htmlFor="password" className="text-sm font-medium">Password</label>
