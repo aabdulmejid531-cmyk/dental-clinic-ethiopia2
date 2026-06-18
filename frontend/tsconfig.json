@@ -19,7 +19,9 @@
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": true,
     "module": "ESNext",
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "jsx": "react-jsx",
+    "resolveJsonModule": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

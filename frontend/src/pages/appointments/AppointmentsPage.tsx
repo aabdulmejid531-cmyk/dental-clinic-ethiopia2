@@ -46,7 +46,7 @@ export const AppointmentsPage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          patientId: user?.user_id,
+          patientId: user?.id,
           doctorId: formData.doctorId,
           datetime: formData.datetime,
           reason: formData.reason,

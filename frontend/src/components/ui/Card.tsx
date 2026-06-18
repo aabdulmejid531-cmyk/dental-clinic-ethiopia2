@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { cn } from '../../utils/cn';
 
-const Card = forwardRef<HTMLDivElement, { className?: string }>(({ className, ...props }, ref) => (
+const Card = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
@@ -13,7 +13,7 @@ const Card = forwardRef<HTMLDivElement, { className?: string }>(({ className, ..
 ));
 Card.displayName = 'Card';
 
-const CardHeader = forwardRef<HTMLDivElement, { className?: string }>(({
+const CardHeader = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({
   className,
   ...props
 }, ref) => (
@@ -21,7 +21,7 @@ const CardHeader = forwardRef<HTMLDivElement, { className?: string }>(({
 ));
 CardHeader.displayName = 'CardHeader';
 
-const CardTitle = forwardRef<HTMLParagraphElement, { className?: string }>(({
+const CardTitle = forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(({
   className,
   ...props
 }, ref) => (
@@ -33,7 +33,7 @@ const CardTitle = forwardRef<HTMLParagraphElement, { className?: string }>(({
 ));
 CardTitle.displayName = 'CardTitle';
 
-const CardDescription = forwardRef<HTMLParagraphElement, { className?: string }>(({
+const CardDescription = forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(({
   className,
   ...props
 }, ref) => (
@@ -41,7 +41,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, { className?: string }>
 ));
 CardDescription.displayName = 'CardDescription';
 
-const CardContent = forwardRef<HTMLDivElement, { className?: string }>(({
+const CardContent = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({
   className,
   ...props
 }, ref) => (
@@ -49,7 +49,7 @@ const CardContent = forwardRef<HTMLDivElement, { className?: string }>(({
 ));
 CardContent.displayName = 'CardContent';
 
-const CardFooter = forwardRef<HTMLDivElement, { className?: string }>(({
+const CardFooter = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({
   className,
   ...props
 }, ref) => (

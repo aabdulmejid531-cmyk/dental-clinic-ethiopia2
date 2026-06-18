@@ -44,7 +44,7 @@ export const useAppointments = () => {
     onSuccess: () => {
       toast.success('Appointment booked successfully');
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(`Failed to book appointment: ${error.message}`);
     },
   });
@@ -76,7 +76,7 @@ export const useAI = () => {
 
       return response.json();
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(`AI chat error: ${error.message}`);
     },
   });
@@ -96,7 +96,7 @@ export const useAI = () => {
 
       return response.json();
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(`Symptom check error: ${error.message}`);
     },
   });
@@ -116,7 +116,7 @@ export const useAI = () => {
 
       return response.json();
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(`Treatment plan error: ${error.message}`);
     },
   });
