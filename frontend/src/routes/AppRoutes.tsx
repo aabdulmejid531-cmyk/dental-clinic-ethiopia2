@@ -9,6 +9,7 @@ import { RegisterPage } from '../pages/auth/RegisterPage';
 import { PatientDashboard } from '../pages/patient/PatientDashboard';
 import { DoctorDashboard } from '../pages/doctor/DoctorDashboard';
 import { AdminPanel } from '../pages/admin/AdminPanel';
+import { AppointmentsPage } from '../pages/appointments/AppointmentsPage';
 import { AIChatPage } from '../pages/ai/AIChatPage';
 import { MedicalRecordsPage } from '../pages/records/MedicalRecordsPage';
 import { ProfilePage } from '../pages/profile/ProfilePage';
@@ -31,12 +32,13 @@ export const AppRoutes = () => {
       <Route path="/" element={<Layout><LandingPage /></Layout>} />
       <Route path="/about" element={<Layout><AboutPage /></Layout>} />
       <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
-      <Route path="/login" element={<Layout>{!user ? <LoginPage /> : <Navigate to="/dashboard" />}</Layout>} />
-      <Route path="/register" element={<Layout>{!user ? <RegisterPage /> : <Navigate to="/dashboard" />}</Layout>} />
+      <Route path="/login" element={<Layout>{!user ? <LoginPage /> : user?.user_metadata?.role === 'admin' ? <Navigate to="/admin" /> : user?.user_metadata?.role === 'doctor' ? <Navigate to="/doctor" /> : <Navigate to="/dashboard" />}</Layout>} />
+      <Route path="/register" element={<Layout>{!user ? <RegisterPage /> : user?.user_metadata?.role === 'admin' ? <Navigate to="/admin" /> : user?.user_metadata?.role === 'doctor' ? <Navigate to="/doctor" /> : <Navigate to="/dashboard" />}</Layout>} />
       
       <Route path="/dashboard" element={<Layout><ProtectedRoute><PatientDashboard /></ProtectedRoute></Layout>} />
       <Route path="/doctor" element={<Layout><DoctorRoute><DoctorDashboard /></DoctorRoute></Layout>} />
       <Route path="/admin" element={<Layout><AdminRoute><AdminPanel /></AdminRoute></Layout>} />
+      <Route path="/appointments" element={<Layout><ProtectedRoute><AppointmentsPage /></ProtectedRoute></Layout>} />
       <Route path="/ai-chat" element={<Layout><ProtectedRoute><AIChatPage /></ProtectedRoute></Layout>} />
       <Route path="/medical-records" element={<Layout><ProtectedRoute><MedicalRecordsPage /></ProtectedRoute></Layout>} />
       <Route path="/profile" element={<Layout><ProtectedRoute><ProfilePage /></ProtectedRoute></Layout>} />

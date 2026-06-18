@@ -4,7 +4,6 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AppRoutes } from './routes/AppRoutes';
-import { AppointmentsRoutes } from './routes/AppointmentsRoutes';
 import './i18n';
 
 const queryClient = new QueryClient({
@@ -23,7 +22,6 @@ function App() {
         <AuthProvider>
           <BrowserRouter>
             <AppRoutes />
-            <AppointmentsRoutes />
             <Toaster position="top-right" />
           </BrowserRouter>
         </AuthProvider>
