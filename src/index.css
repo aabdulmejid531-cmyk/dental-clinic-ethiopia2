@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-sand-50 text-ink font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  :focus-visible {
+    outline: 2px solid #D9A441;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background-color: #D9A441;
+    color: #0B2C29;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-teal-700 px-6 py-3 text-sm font-semibold text-sand-50 transition hover:bg-teal-800 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-teal-700/30 bg-transparent px-6 py-3 text-sm font-semibold text-teal-800 transition hover:bg-teal-700/5 active:scale-[0.98];
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-400 px-6 py-3 text-sm font-semibold text-teal-900 transition hover:bg-gold-500 active:scale-[0.98];
+  }
+  .card {
+    @apply rounded-2xl border border-teal-700/10 bg-white/80 p-6 shadow-soft backdrop-blur-sm;
+  }
+  .input-field {
+    @apply w-full rounded-xl border border-teal-700/20 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink/40 outline-none transition focus:border-teal-500;
+  }
+  .label-field {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-teal-800/70;
+  }
+}
