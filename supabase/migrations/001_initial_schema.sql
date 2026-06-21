@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS profiles (
 CREATE TABLE IF NOT EXISTS appointments (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   patient_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
-  doctor_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  doctor_id UUID REFERENCES profiles(id) ON DELETE SET NULL,
   datetime TIMESTAMP WITH TIME ZONE NOT NULL,
   reason TEXT NOT NULL,
   notes TEXT,
@@ -98,3 +98,4 @@ CREATE TRIGGER update_medical_records_updated_at BEFORE UPDATE ON medical_record
 
 CREATE TRIGGER update_ai_chat_sessions_updated_at BEFORE UPDATE ON ai_chat_sessions
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+-- Fix: added trailing newline to prevent Vercel deploy errors

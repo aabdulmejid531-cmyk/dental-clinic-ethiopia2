@@ -103,3 +103,4 @@ CREATE POLICY "Patients can manage own AI messages"
         AND ai_chat_sessions.patient_id = auth.uid()
     )
   );
+

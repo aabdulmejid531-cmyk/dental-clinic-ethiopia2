@@ -174,7 +174,7 @@ export const AppointmentsPage = () => {
         if (error.message?.includes('relation') || error.message?.includes('does not exist')) {
           setFeedback({
             type: 'error',
-            message: 'The appointments table does not exist yet. Please go to your Supabase dashboard → SQL Editor and run this:\n\nCREATE TABLE appointments (\n  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,\n  patient_id uuid REFERENCES auth.users,\n  doctor_id uuid REFERENCES auth.users,\n  datetime timestamptz NOT NULL,\n  reason text,\n  notes text,\n  status text DEFAULT \'pending\'\n);'
+            message: 'The appointments table does not exist yet. Check the SQL migration files in supabase/migrations/ and run them in your Supabase SQL Editor.'
           });
         } else {
           setFeedback({ type: 'error', message: `Booking failed: ${error.message}` });
